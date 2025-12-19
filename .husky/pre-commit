@@ -1,0 +1,32 @@
+#!/bin/bash
+#yarn test
+echo "🔗 Husky pre-commit hook running..."
+
+# Check files to run lint-staged
+files=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(js|jsx|ts|tsx)$' || true)
+if [ -z "$files" ]; then
+  echo "✅ There are no JS/TS files to review."
+  echo "➖ Skip lint-staged trigger"
+else
+  echo "🔍 Running lint-staged ..."
+  yarn lint-staged || exit 1
+fi
+
+# Set semgrep scan for code vulnerability analisys
+# Obtener archivos JS/TS staged
+files=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(js|jsx|ts|tsx)$' || true)
+if [ -z "$files" ]; then
+  echo "✅ There are no JS/TS files to review."
+  echo "➖ Skip code vulnerability scan trigger"
+else
+  echo "Running the code vulnerability scan to the following files: "
+  echo "$files"
+  semgrep scan --error $files
+  SEMGREP_EXIT=$?
+  if [ "$SEMGREP_EXIT" -ne 0 ]; then
+    echo "❌ Semgrep detectó vulnerabilidades. Commit bloqueado."
+    exit 1
+  fi
+fi
+
+echo "✅ Hook complete"

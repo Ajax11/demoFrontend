@@ -1,0 +1,14 @@
+#!/bin/bash
+
+echo "🔒 Running Trivy security scan"
+
+# Ejecutar trivy y fallar si detecta un error de dependencias
+trivy fs --quiet --exit-code 1 ./yarn.lock
+TRIVY_STATUS=$?
+
+if [ $TRIVY_STATUS -ne 0 ]; then
+  echo "❌ Trivy detected vulnerabilities. Push blocked."
+  exit 1
+fi
+
+echo "✅ Trivy scan passed."
