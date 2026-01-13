@@ -15,8 +15,8 @@ const OpenRedirect = () => {
       //window.location.href = redirectUrl;
       navigate(redirectPath);
     }
-  }, []);
-  // }, [navigate]);
+  }, [navigate]);
+  //}, []);
 
   return <h2>Redirecting...</h2>;
 };

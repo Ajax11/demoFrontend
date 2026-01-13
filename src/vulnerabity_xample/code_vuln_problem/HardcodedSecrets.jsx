@@ -2,10 +2,6 @@ import axios from 'axios';
 
 // ❌ Secretos hardcodeados
 // const API_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.INSECURE';
-// var token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.INSECURE';
-
-// Forzar a usar process, mala practica pero para validar
-// que funcina, un recurso necesario
 
 const process = {};
 
