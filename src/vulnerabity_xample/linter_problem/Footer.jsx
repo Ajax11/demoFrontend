@@ -1,5 +1,7 @@
 import React from 'react';
 
+//import minimist from 'minimist';
+
 //var name = 'Maria';
 var last_name = 'Concepcion';
 
