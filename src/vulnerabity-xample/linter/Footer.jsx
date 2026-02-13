@@ -2,12 +2,14 @@ import React from 'react';
 //import minimist from 'minimist';
 
 var name = 'Flor';
-//var last_name = 'Concepcion';
+var last_name = 'Concepcion';
 
 function Base() {
   return (
     <div>
-      <p>last_name, {name}</p>
+      <p>
+        {last_name}, {name}
+      </p>
     </div>
   );
 }
